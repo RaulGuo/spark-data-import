@@ -26,3 +26,4 @@
 .DS_Store
 Thumbs.db
 /bin/
+.cache-main
