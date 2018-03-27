@@ -27,7 +27,7 @@ import org.apache.spark.sql.functions._
 object ImportCompanyThreads {
   val prop = ImportUtil.getProperties
 	val mode = SaveMode.Append
-	val schema = "dc_import_append"
+	val schema = "dc_import_append_2"
 	
 	def importCompanyRelatedWithDF(spark:SparkSession, province:String, provinceCode:Int, df:Dataset[Row], use207:Boolean = true, branch:Boolean = true, change:Boolean = true){
     var dbUrl:String = "";

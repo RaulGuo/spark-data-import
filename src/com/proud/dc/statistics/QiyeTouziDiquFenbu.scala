@@ -2,7 +2,6 @@ package com.proud.dc.statistics
 
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.SaveMode
-import com.google.gson.Gson
 import org.apache.spark.storage.StorageLevel
 import com.proud.ark.config.ConfigUtil
 import com.proud.ark.db.DBUtil

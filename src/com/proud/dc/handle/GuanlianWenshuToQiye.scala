@@ -10,10 +10,10 @@ import com.proud.ark.data.HDFSUtil
 
 /**
  * 将文书跟企业ID关联起来。文书跟企业之间是多对多的关系
-nohup spark-submit --driver-memory 25g --class com.proud.dc.handle.GuanlianWenshuToQiye --jars /home/data_center/dependency/mysql-connector-java.jar,/home/data_center/dependency/ArkUtil-0.0.1-SNAPSHOT.jar /home/data_center/dependency/datacenter-import-0.0.1-SNAPSHOT.jar &
-spark-submit --executor-memory 10g --master spark://bigdata01:7077 --class com.proud.dc.handle.GuanlianWenshuToQiye --jars /home/data_center/dependency/mysql-connector-java.jar,/home/data_center/dependency/ArkUtil-0.0.1-SNAPSHOT.jar /home/data_center/dependency/datacenter-import-0.0.1-SNAPSHOT.jar
-
-统计企业的涉诉案由以及数量（不分时间）
+ * nohup spark-submit --driver-memory 25g --class com.proud.dc.handle.GuanlianWenshuToQiye --jars /home/data_center/dependency/mysql-connector-java.jar,/home/data_center/dependency/ArkUtil-0.0.1-SNAPSHOT.jar /home/data_center/dependency/datacenter-import-0.0.1-SNAPSHOT.jar &
+ * spark-submit --executor-memory 10g --master spark://bigdata01:7077 --class com.proud.dc.handle.GuanlianWenshuToQiye --jars /home/data_center/dependency/mysql-connector-java.jar,/home/data_center/dependency/ArkUtil-0.0.1-SNAPSHOT.jar /home/data_center/dependency/datacenter-import-0.0.1-SNAPSHOT.jar
+ * 
+ * 统计企业的涉诉案由以及数量（不分时间）
  */
 
 object GuanlianWenshuToQiye {
@@ -31,12 +31,14 @@ object GuanlianWenshuToQiye {
 	  val sc = spark.sparkContext
 	  import spark.implicits._
 	  val sqlContext = spark.sqlContext
+	  //获取企业信息，删除不规范的企业
 	  val companyDF = HDFSUtil.loadCompanyNoGetiBasic(spark).select("id", "name").withColumnRenamed("id", "company_id").filter(x => {
 	    val name = x.getAs[String]("name")
 	    !(name == null || name.trim().isEmpty() || name.contains("＊＊") || name.contains("*"))
 	  })
 	  
-	  val wenshu = DBUtil.loadDFFromTable("wenshu.ws_content_primary", 4, spark).select("id", "appellor").filter(x => x.getAs[String]("appellor") != null).flatMap(x => {
+	  val wenshu = DBUtil.loadDFFromTable("wenshu.ws_content_primary", 4, spark).select("id", "appellor")
+	  .filter(x => x.getAs[String]("appellor") != null).flatMap(x => {
 	    val id = x.getAs[Int]("id")
 	    x.getAs[String]("appellor").split(",").map { x => Wenshu(id, x) }
 	  })

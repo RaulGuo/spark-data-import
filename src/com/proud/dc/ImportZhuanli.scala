@@ -9,7 +9,9 @@ import org.apache.spark.sql.SaveMode
 nohup spark-submit --class com.proud.dc.ImportZhuanli --jars /root/data/dependency/mysql-connector-java.jar --conf spark.driver.momory=20G /home/data_center/datacenter-import-0.0.1-SNAPSHOT.jar &
  */
 
-
+/**
+ * 专利信息的导入脚本（主要是一堆column的rename）
+ */
 object ImportZhuanli {
   
   val spark = SparkSession.builder().appName("DataImport").config("spark.sql.warehouse.dir", "file:///root/spark-tmp/warehouse").enableHiveSupport().getOrCreate()

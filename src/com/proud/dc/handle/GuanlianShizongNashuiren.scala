@@ -7,6 +7,9 @@ import com.proud.ark.config.GlobalVariables
 import com.proud.ark.db.DBUtil
 import org.apache.spark.sql.SaveMode
 
+/**
+ * 关联失踪纳税人和企业，计算企业是否数据失踪纳税人，以及对应的失踪纳税人的信息。
+ */
 object GuanlianShizongNashuiren {
   def main(args: Array[String]): Unit = {
     val resultTable = "tax.shigzong_company"

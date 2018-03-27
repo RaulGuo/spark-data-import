@@ -7,6 +7,7 @@ import com.proud.ark.data.HDFSUtil
 
 /**
  * 计算企业的简称
+ * 将企业的简称和企业名称进行关联，计算出某个ID对应的企业的简称。
  * 
  */
 

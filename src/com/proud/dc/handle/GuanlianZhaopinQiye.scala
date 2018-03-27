@@ -8,6 +8,7 @@ import com.proud.ark.data.HDFSUtil
 /**
 spark-shell --jars /home/data_center/dependency/mysql-connector-java.jar,/home/data_center/dependency/ArkUtil-0.0.1-SNAPSHOT.jar
 nohup spark-submit --master local[*] --driver-memory 20G --class com.proud.dc.handle.GuanlianZhaopinQiye --jars /home/data_center/dependency/mysql-connector-java.jar,/home/data_center/dependency/ArkUtil-0.0.1-SNAPSHOT.jar /home/data_center/dependency/datacenter-import-0.0.1-SNAPSHOT.jar &
+统计企业的招聘信息。
 
  */
 

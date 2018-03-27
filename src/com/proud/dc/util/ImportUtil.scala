@@ -121,7 +121,6 @@ object ImportUtil {
     val sqlContext = new SQLContext(sc)
     import sqlContext.implicits._
     
-//    val df = origDF.withColumn("company_id",  monotonically_increasing_id+compIdOffset)
     val df = zipDataFrameWithId(origDF, sc, sqlContext, compIdOffset, "company_id")
     df.createOrReplaceTempView("company_save")
     
@@ -147,7 +146,6 @@ object ImportUtil {
   	  }
   	}(encoder)
   	
-//  	val reportEntityDF = reportEntity.withColumn("report_id", monotonically_increasing_id+reportIdOffset)
     val reportEntityDF = zipDataFrameWithId(reportEntity, sc, sqlContext, reportIdOffset, "report_id")
     (df, reportEntityDF)
   }

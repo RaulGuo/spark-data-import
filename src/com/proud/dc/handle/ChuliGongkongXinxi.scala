@@ -11,7 +11,9 @@ import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.types.LongType
 
 /**
- spark-submit --master spark://bigdata01:7077 --executor-memory 10G --class com.proud.dc.handle.ChuliGongkongXinxi --jars /home/data_center/dependency/mysql-connector-java.jar,/home/data_center/dependency/ArkUtil-0.0.1-SNAPSHOT.jar,/home/data_center/dependency/ikanalyzer-2012_u6.jar /home/data_center/dependency/datacenter-import-0.0.1-SNAPSHOT.jar
+ * spark-submit --master spark://bigdata01:7077 --executor-memory 10G --class com.proud.dc.handle.ChuliGongkongXinxi --jars /home/data_center/dependency/mysql-connector-java.jar,/home/data_center/dependency/ArkUtil-0.0.1-SNAPSHOT.jar,/home/data_center/dependency/ikanalyzer-2012_u6.jar /home/data_center/dependency/datacenter-import-0.0.1-SNAPSHOT.jar
+ * 
+ * 处理企业的工控信息。
  */
 object ChuliGongkongXinxi {
   
